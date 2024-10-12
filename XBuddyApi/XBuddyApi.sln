@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{21AD3D1E-8B40-45A4-94CB-6AE79264EC1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{15B380E7-3638-4F37-8F20-62807417426D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1443AD44-CC1F-415B-91E4-E329161A11DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XBuddy.WebApi", "Clients\XBuddy.WebApi\XBuddy.WebApi.csproj", "{EC11ED10-9053-4FB9-9A58-AA295D14208B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC11ED10-9053-4FB9-9A58-AA295D14208B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC11ED10-9053-4FB9-9A58-AA295D14208B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC11ED10-9053-4FB9-9A58-AA295D14208B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC11ED10-9053-4FB9-9A58-AA295D14208B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC11ED10-9053-4FB9-9A58-AA295D14208B} = {21AD3D1E-8B40-45A4-94CB-6AE79264EC1E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59EA019D-2E81-4B7E-B2BB-B2BBC4EEAFAC}
+	EndGlobalSection
+EndGlobal

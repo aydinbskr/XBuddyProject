@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [xb] AUTHORIZATION [dbo]

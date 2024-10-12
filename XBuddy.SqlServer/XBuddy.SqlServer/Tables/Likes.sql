@@ -1,0 +1,10 @@
+﻿CREATE TABLE [xb].[Likes]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [CreatedDate] DATETIME NOT NULL, 
+    [ModifiedDate] DATETIME NULL, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [TweetId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [FK_Likes_UserId] FOREIGN KEY ([UserId]) REFERENCES xb.[Users]([Id]),
+    CONSTRAINT [FK_Likes_TweetId] FOREIGN KEY ([UserId]) REFERENCES xb.[Tweets]([Id])
+)

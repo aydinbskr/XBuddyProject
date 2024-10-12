@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="00d00270-335e-46f6-9f92-8276e08cba62" ChangeDateTime="09/14/2024 13:00:56">
+    <Property Name="ElementName" Value="[xb].[Tweets].[Username]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[xb].[Tweets]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="51d627ad-ab21-4543-9c16-3c8209a0a373" ChangeDateTime="09/14/2024 13:01:13">
+    <Property Name="ElementName" Value="[xb].[Tweets].[EmailAddress]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[xb].[Tweets]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Content" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a3d383be-79af-4f8b-a118-e16b01cf9b58" ChangeDateTime="09/14/2024 13:02:15">
+    <Property Name="ElementName" Value="[xb].[Tweets].[Password]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[xb].[Tweets]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LikeCount" />
+  </Operation>
+</Operations>
