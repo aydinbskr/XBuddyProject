@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using XBuddy.WebApi.Infrastructure.MultiTenant.Extensions;
 using XBuddy.WebApi.Infrastructure.MultiTenant.Services;
+using XBuddy.Infra.SqlServer.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMultiTenancy();
+
+builder.Services.AddSqlServices(builder.Configuration.GetConnectionString("SqlSerber"), (sp) =>
+{
+    var service = sp.GetRequiredService<IMultiTenantService>();
+    return service.GetUserId().ToString();
+});
 
 var app = builder.Build();
 

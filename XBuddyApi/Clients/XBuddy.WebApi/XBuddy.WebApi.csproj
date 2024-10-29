@@ -12,4 +12,8 @@
     <PackageReference Include="XBuddyModels" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\XBuddy.Infra.SqlServer\XBuddy.Infra.SqlServer.csproj" />
+  </ItemGroup>
+
 </Project>

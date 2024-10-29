@@ -4,5 +4,7 @@
     {
         string GetCurrentTenantId();
         string SetCurrentTenantId(string tenantId);
+
+        Guid? GetUserId();
     }
 }
