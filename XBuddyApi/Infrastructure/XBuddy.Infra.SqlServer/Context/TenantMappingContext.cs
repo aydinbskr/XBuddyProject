@@ -11,7 +11,7 @@ namespace XBuddy.Infra.SqlServer.Context
 {
     public class TenantMappingContext(DbContextOptions<TenantMappingContext> options):DbContext(options)
     {
-        public DbSet<TenantMappingEntity> TenantMappings { get; set; }
+        public DbSet<TenantMappingEntity> TenantsMappings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

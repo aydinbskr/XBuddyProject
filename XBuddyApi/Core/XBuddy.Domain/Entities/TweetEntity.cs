@@ -10,8 +10,10 @@ namespace XBuddy.Domain.Entities
     {
         public string Content { get; set; }
         public Guid UserId { get; set; }
+        public int ViewCount { get; set; }
 
-        public virtual ICollection<LikeEntity> Likes { get; set; }
-        public virtual UserEntity User { get; set; }
+        public UserEntity User { get; set; }
+        public ICollection<LikeEntity> Likes { get; set; }
+        
     }
 }

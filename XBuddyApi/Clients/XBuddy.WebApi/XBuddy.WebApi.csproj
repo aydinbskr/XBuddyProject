@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\XBuddy.Application\XBuddy.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\XBuddy.Infra.SqlServer\XBuddy.Infra.SqlServer.csproj" />
   </ItemGroup>
 

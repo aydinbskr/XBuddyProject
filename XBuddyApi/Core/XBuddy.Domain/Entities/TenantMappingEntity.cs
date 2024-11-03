@@ -11,6 +11,7 @@ namespace XBuddy.Domain.Entities
     {
         public string TenantId { get; set; }
         public Guid UserId { get; set; }
+
         public UserEntity User { get; set; }
     }
     

@@ -1,4 +1,6 @@
-﻿using XBuddy.Infra.SqlServer.Context;
+﻿
+using XBuddy.Application.Services;
+using XBuddy.Infra.SqlServer.Context;
 
 namespace XBuddy.WebApi.Infrastructure.Services
 {
@@ -14,7 +16,7 @@ namespace XBuddy.WebApi.Infrastructure.Services
             LoadMap();
         }
 
-        public Guid? GetUseyByTenantId(string tenantid)
+        public Guid? GetUserByTenantId(string tenantid)
         {
 
             return map.TryGetValue(tenantid, out var userId) ? userId : null;
@@ -24,7 +26,7 @@ namespace XBuddy.WebApi.Infrastructure.Services
         {
             using var scope = serviceProvider.CreateScope();
             dbContext = scope.ServiceProvider.GetService<TenantMappingContext>();
-            map = dbContext.TenantMappings.ToDictionary(i => i.TenantId, i => i.UserId);
+            map = dbContext.TenantsMappings.ToDictionary(i => i.TenantId, i => i.UserId);
         }
     }
 }

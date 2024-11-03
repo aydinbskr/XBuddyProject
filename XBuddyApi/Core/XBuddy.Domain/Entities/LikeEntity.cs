@@ -11,7 +11,7 @@ namespace XBuddy.Domain.Entities
         public Guid UserId { get; set; }
         public Guid TweetId { get; set; }
 
-        public virtual UserEntity User { get; set; }
-        public virtual TweetEntity Tweet { get; set; }
+        public UserEntity User { get; set; }
+        public TweetEntity Tweet { get; set; }
     }
 }

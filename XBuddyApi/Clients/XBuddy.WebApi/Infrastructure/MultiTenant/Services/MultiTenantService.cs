@@ -1,4 +1,5 @@
-﻿using XBuddy.WebApi.Infrastructure.Services;
+﻿using XBuddy.Application.Services;
+using XBuddy.WebApi.Infrastructure.Services;
 
 namespace XBuddy.WebApi.Infrastructure.MultiTenant.Services
 {
@@ -16,6 +17,6 @@ namespace XBuddy.WebApi.Infrastructure.MultiTenant.Services
 
         public string SetCurrentTenantId(string tenantId) => this.tenantId = tenantId;
 
-        public Guid? GetUserId() => tenantMappingService.GetUseyByTenantId(tenantId);
+        public Guid? GetUserId() => tenantMappingService.GetUserByTenantId(tenantId);
     }
 }
