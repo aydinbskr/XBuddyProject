@@ -1,10 +1,12 @@
 ﻿using Mapster;
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XBuddy.Application.Infrastructure.PipelineBehaviours;
 
 namespace XBuddy.Application.Extensions
 {
@@ -18,6 +20,7 @@ namespace XBuddy.Application.Extensions
                 opt.ServiceLifetime = ServiceLifetime.Scoped;
             });
             services.AddMapster();
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TenantCachePipelineBehaviour<,>));
             return services;
         }
     }

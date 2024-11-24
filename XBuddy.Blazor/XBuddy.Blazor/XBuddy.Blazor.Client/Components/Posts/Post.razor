@@ -1,0 +1,61 @@
+﻿@using XBuddyModels.Extensions
+
+<div class="card mb-3 position-relative" id="@Id">
+	<img src="@ProfileImageUrl" alt="Profile Picture"
+	class="rounded-circle position-absolute top-0 staṛt-0 m-2" width="40" height="40">
+
+	<div class="card-body" style="padding-left: 65px;">
+		<div class="d-flex justify-content-between align-items-center mb-2">
+		<h5 class="card-subtitle text-body-secondary">@@@Username</h5>
+			<p class="card-subtitle text-muted">@PostedTime.GetFormattedPostedTime()</p> 
+		</div>
+		<p class="card-text">@Content</p>
+		<div class="d-flex justify-content-between align-items-center">
+			<div>
+				<i class="bi bi-eye"></i> @ViewCount
+				<span class="ms-3">
+				<i class="bi bi-heart@(@IsLiked ? "-fill" : "")"></i> @LikeCount </span>
+			</div>
+			<button class="btn btn-primary btn-sm">Cevapla</button>
+		</div>
+	</div>
+</div>
+
+@code {
+
+	[Parameter]
+	public Guid Id { get; set; }
+
+	[Parameter]
+	public Guid UserId { get; set; }
+
+	[Parameter]
+	public string Username { get; set; }
+	[Parameter]
+	public string ProfileImageUrl { get; set; } = "https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_";
+
+	[Parameter]
+	public DateTime PostedTime { get; set; }
+
+	[Parameter]
+	public bool IsLiked { get; set; }
+
+	[Parameter]
+	public string Content { get; set; }
+
+	[Parameter]
+	public int LikeCount { get; set; }
+
+	[Parameter]
+	public int ViewCount { get; set; }
+
+	[Parameter]
+	public EventCallback<int> OnLiked { get; set; }
+
+	private async Task LikePost()
+	{
+		ViewCount++;
+		await OnLiked.InvokeAsync(ViewCount);
+	}
+
+}

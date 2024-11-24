@@ -1,0 +1,111 @@
+﻿@page "/{tenantId}/feed"
+@using XBuddyModels.Constants
+@using XBuddyModels.Extensions
+@using XBuddyModels.Paging
+@using XBuddyModels.Queries.Feed
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
+
+<div class="posts" id="posts"> 
+@if (userFeed is not null)
+	{
+		@foreach (var post in userFeed.Data)
+		{
+			<XBuddy.Blazor.Client.Components.Posts.Post
+				@key = "@post.Id"
+				Id = "@post.Id"
+				UserId = "@post.UserId"
+				Content = "@post.Content"
+				LikeCount = "@post.LikesCount"
+				PostedTime = "@post.CreatedAt"
+				Username = "@post.UserName"
+				IsLiked = "@post.IsLiked"
+				ViewCount = "@post.ViewCount" />
+		}
+	}
+</div>
+
+<br />
+<br />
+
+
+<div style="display: flex; justify-content: center;">
+	<button class="btn btn-link" hidden="@(!hasNextPage)" @onclick="LoadMore">Load More</button>
+</div>
+
+@code {
+
+	private PagedResponse<GetUserFeedViewModel> userFeed = null; 
+
+	[Inject]
+	public HttpClient client { get; set; }
+
+	[Inject]
+	public IHttpClientFactory clientFactory { get; set; }
+
+	[Parameter]
+	public string tenantId { get; set; }
+
+	private bool hasNextPage => userFeed?.PageInfo.HasNextPage is true;
+
+	protected override async Task OnInitializedAsync()
+	{
+		var url = "feed".ToPagedQueryString(1, 2);
+		userFeed = await client.GetFromJsonAsync<PagedResponse<GetUserFeedViewModel>>(url);
+		await ExecutePostViewed(userFeed.Data);
+	}
+
+
+	private async Task LoadMore()
+	{
+		var url = "feed".ToPagedQueryString(userFeed.PageInfo.PageNumber + 1, 10)
+					.ToQuery("ignoreCacheRead", "true")
+					.ToQuery("ignoreCacheWrite", "true");
+
+		var newFeed = await client.GetFromJsonAsync<PagedResponse<GetUserFeedViewModel>>(url);
+
+		if (newFeed.Data.Any(i => userFeed.Data.Any(u => u.Id == i.Id)))
+		{
+			Console.WriteLine("Same key found");
+		}
+
+		userFeed.Data = userFeed.Data.Concat(newFeed.Data).ToList();
+		userFeed.PageInfo = newFeed.PageInfo;
+		StateHasChanged();
+		await Task.Yield();
+		await JS.InvokeVoidAsync("scrollToLastItem", newFeed.Data.First().Id);
+		await ExecutePostViewed(newFeed.Data);
+	}
+
+
+	public Task ExecutePostViewed (IEnumerable<GetUserFeedViewModel> feeds)
+	{
+		var postViewClient = clientFactory.CreateClient("postviewapi");
+		var tasks = feeds.Select(feed => new Task(() =>
+		{
+			postViewClient.PostAsync(string.Format("{2}?postId={0}&userId={1}", feed.Id, feed.UserId, RouteConstants.PostViewApi), null);
+
+		}));
+
+		tasks.ToList().ForEach(t => t.Start());
+
+		return Task.CompletedTask;
+	}
+
+}
+	<script>
+		window.scrollToLastItem = (id) => {
+			console.log(id);
+			const posts = document.getElementById(id);
+			if (posts) {
+				posts.scrollIntoView({ behavior: "smooth" });
+				console.log('focused to last item');
+			} else {
+				console.log('last item not found');
+			}
+		};
+		
+	</script>
+	
